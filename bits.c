@@ -220,7 +220,7 @@ int fitsBits(int x, int n) {
  */
 int divpwr2(int x, int n) {
     int shift = (x >> 31) & n;
-    int k = (1 << shift) - 1;
+    int k = (1 << shift) + ~0;
 
     return (x + k) >> n;
 }
@@ -254,7 +254,7 @@ int isPositive(int x) {
  *   Rating: 3
  */
 int isLessOrEqual(int x, int y) {
-    return 2;
+    return ((y + (~x + 1)) >> 31) + 1;
 }
 /*
  * ilog2 - return floor(log base 2 of x), where x > 0
